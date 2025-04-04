@@ -1,0 +1,32 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }    
+}
+
+group 'ru.spbu.apmath.pt'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.hadoop:hadoop-common:2.8.1'
+    compile 'org.apache.hadoop:hadoop-mapreduce-client-jobclient:2.8.1'
+    compile 'org.apache.lucene:lucene-analyzers-common:6.4.0'
+    compile 'commons-httpclient:commons-httpclient:3.1'
+}
+
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+

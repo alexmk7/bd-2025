@@ -1,0 +1,53 @@
+version: "2"
+services:
+  namenode:
+    build:
+      dockerfile: ./Dockerfile.hadoop
+    hostname: namenode
+    container_name: namenode
+    restart: always
+    ports:
+      - 9870:9870
+      - 9000:9000
+    command: [ "hdfs", "namenode" ]
+    env_file:
+      - ./hadoop.env
+    environment:
+      ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
+
+  datanode:
+    build:
+      dockerfile: ./Dockerfile.hadoop
+    command: [ "hdfs", "datanode" ]
+    hostname: datanode
+    container_name: datanode
+    restart: always
+    volumes:
+      - ..:/bd2024
+    ports:
+      - 9864:9864
+    env_file:
+      - ./hadoop.env
+
+  resourcemanager:
+    build:
+      dockerfile: ./Dockerfile.hadoop
+    hostname: resourcemanager
+    container_name: resourcemanager
+    command: [ "yarn", "resourcemanager" ]
+    ports:
+      - 8088:8088
+    env_file:
+      - ./hadoop.env
+
+  nodemanager:
+    build:
+      dockerfile: ./Dockerfile.hadoop
+    command: [ "yarn", "nodemanager" ]
+    hostname: nodemanager
+    container_name: nodemanager
+    restart: always
+    volumes:
+      - ..:/bd2024
+    env_file:
+      - ./hadoop.env

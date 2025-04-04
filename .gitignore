@@ -1,0 +1,22 @@
+# Node
+node_modules/
+dist/
+
+# Python
+*.pyc
+__pycache__/
+*_pickle
+
+# IDE
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Java
+target/
+.gradle/
+
+# Misc
+.DS_Store
+Thumbs.db
+*.log

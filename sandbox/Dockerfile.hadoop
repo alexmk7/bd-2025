@@ -1,0 +1,5 @@
+FROM apache/hadoop:3
+
+RUN sudo yum install -y python3 \
+    && pip3 install --user hdfs mrjob
+

@@ -1,0 +1,10 @@
+version: "2"
+services:
+  hive:
+    image: apache/hive:4.0.0
+    container_name: hive
+    ports:
+      - 10000:10000
+      - 10002:10002
+    environment:
+      SERVICE_NAME: hiveserver2

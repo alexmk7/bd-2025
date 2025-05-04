@@ -2,7 +2,7 @@
 
 В файле `job.py` простой код для подсчета количества слов в текстовых данных. Для того, чтобы запустить локально:
 ```bash
-python3 job.py < ../../data/weather.csv
+python3 job.py < ../../data/hive.txt
 ```
 
 
@@ -14,15 +14,15 @@ docker exec -it nodemanager bash
 
 2. Скопируйте файл на `HDFS`
 ```bash 
-hadoop fs -put /bd2024/data/weather.csv /weather.csv
+hadoop fs -put /bd2024/data/hive.txt /hive.txt
 ```
 
 3. Запустите `job.py` с нужным ключем
 ```bash
-python3 /bd2024/code/mrjob/job.py -r hadoop  hdfs:///weather.csv -o hdfs:///weather_res
+python3 /bd2024/code/mrjob/job.py -r hadoop  hdfs:///hive.txt -o hdfs:///hive_res
 ```
 
 4. Можно посмотреть на результат
 ```bash
-hadoop fs -cat "hdfs:///weather_res/*"
+hadoop fs -cat "hdfs:///hive_res/*"
 ```
